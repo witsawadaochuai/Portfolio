@@ -10,9 +10,18 @@ export function Hero({ content }: HeroProps) {
   return (
     <section id="top" className="grid gap-6 pb-8 pt-2 xl:grid-cols-[1.05fr_0.95fr]">
       <div className="rounded-2xl bg-dashboard-hero p-6 text-white shadow-dashboard md:p-8">
-        <p className="text-xs font-black uppercase tracking-normal text-blue-100">
-          {content.hero.eyebrow}
-        </p>
+        <div className="mb-8 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/8 p-3">
+          <img
+            className="h-16 w-16 shrink-0 rounded-2xl object-cover shadow-card ring-2 ring-white/20"
+            src={assetUrl("assets/Dong.jpg")}
+            alt="Witsawa Daochuai"
+          />
+          <div>
+            <p className="text-base font-black leading-tight text-white">Witsawa Daochuai</p>
+            <p className="mt-1 text-sm font-semibold text-white/60">Full-Stack Software Engineer</p>
+          </div>
+        </div>
+        <p className="text-xs font-black uppercase tracking-normal text-blue-100">{content.hero.eyebrow}</p>
         <h1 className="mt-4 max-w-4xl text-4xl font-black leading-tight tracking-normal md:text-6xl">
           {content.hero.title}
         </h1>
@@ -42,19 +51,6 @@ export function Hero({ content }: HeroProps) {
           src={assetUrl("assets/portfolio/cover.png")}
           alt="Portfolio visual for e-wallet work"
         />
-        <div className="absolute bottom-6 left-6 right-6 flex items-center gap-4 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-dashboard backdrop-blur-xl dark:border-slate-700/70 dark:bg-slate-950/85">
-          <img
-            className="h-20 w-20 shrink-0 rounded-2xl object-cover shadow-card"
-            src={assetUrl("assets/Dong.jpg")}
-            alt="Witsawa Daochuai"
-          />
-          <div>
-            <p className="text-sm font-black uppercase tracking-normal text-blue">Witsawa Daochuai</p>
-            <p className="mt-1 text-sm font-semibold text-muted dark:text-slate-400">
-              Full-Stack Software Engineer
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
