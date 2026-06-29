@@ -10,15 +10,15 @@ export function Hero({ content }: HeroProps) {
   return (
     <section id="top" className="grid gap-6 pb-8 pt-2 xl:grid-cols-[1.05fr_0.95fr]">
       <div className="rounded-2xl bg-dashboard-hero p-6 text-white shadow-dashboard md:p-8">
-        <div className="mb-8 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/8 p-3">
+        <div className="mb-8 flex items-center gap-5 rounded-2xl border border-white/10 bg-white/8 p-4">
           <img
-            className="h-16 w-16 shrink-0 rounded-2xl object-cover shadow-card ring-2 ring-white/20"
+            className="h-28 w-28 shrink-0 rounded-2xl object-cover shadow-card ring-2 ring-white/20 md:h-32 md:w-32"
             src={assetUrl("assets/Dong.jpg")}
             alt="Witsawa Daochuai"
           />
           <div>
-            <p className="text-base font-black leading-tight text-white">Witsawa Daochuai</p>
-            <p className="mt-1 text-sm font-semibold text-white/60">Full-Stack Software Engineer</p>
+            <p className="text-2xl font-black leading-tight text-white md:text-3xl">Witsawa Daochuai</p>
+            <p className="mt-2 text-base font-semibold text-white/60 md:text-lg">Full-Stack Software Engineer</p>
           </div>
         </div>
         <p className="text-xs font-black uppercase tracking-normal text-blue-100">{content.hero.eyebrow}</p>
