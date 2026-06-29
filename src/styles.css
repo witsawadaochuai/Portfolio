@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-cream: #f8fafc;
+  --color-cream-light: #ffffff;
+  --color-white: #ffffff;
+  --color-ink: #111827;
+  --color-muted: #64748b;
+  --color-line: #e5e7eb;
+  --color-green: #10b981;
+  --color-blue: #2563eb;
+  --color-coral: #f97316;
+  --color-sun: #f59e0b;
+  --color-soft: #f1f5f9;
+  --color-mint: #ecfdf5;
+  --color-sidebar: #111827;
+  --color-dashboard-hero: #111827;
+  --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.1);
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-dashboard: 0 10px 30px rgba(15, 23, 42, 0.1);
+  --shadow-sidebar: 0 20px 45px rgba(15, 23, 42, 0.26);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: Arial, "Segoe UI", sans-serif;
+  transition: background-color 420ms ease, color 420ms ease;
+}
+
+.dark body {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, opacity, transform;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-transition {
+  animation: fade-slide-up 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-shell {
+  animation: fade-slide-up 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  .content-transition,
+  .section-shell {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue px-5 py-3 font-black text-white shadow-dashboard transition hover:-translate-y-0.5 hover:bg-slate-900 dark:hover:bg-blue-500;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 font-black text-slate-800 shadow-card transition hover:-translate-y-0.5 hover:border-blue hover:text-blue dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white dark:hover:text-slate-900;
+  }
+
+  .section-shell {
+    @apply py-8;
+  }
+}
