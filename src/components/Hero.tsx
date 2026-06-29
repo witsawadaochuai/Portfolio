@@ -10,9 +10,9 @@ export function Hero({ content }: HeroProps) {
   return (
     <section id="top" className="grid gap-6 pb-8 pt-2 xl:grid-cols-[1.05fr_0.95fr]">
       <div className="rounded-2xl bg-dashboard-hero p-6 text-white shadow-dashboard md:p-8">
-        <div className="mb-8 flex items-center gap-5 rounded-2xl border border-white/10 bg-white/8 p-4">
+        <div className="mb-8 flex flex-col items-start gap-5 rounded-2xl border border-white/10 bg-white/8 p-4 md:flex-row">
           <img
-            className="h-28 w-28 shrink-0 rounded-2xl object-cover shadow-card ring-2 ring-white/20 md:h-32 md:w-32"
+            className="h-auto w-40 shrink-0 rounded-2xl bg-white/10 object-contain shadow-card ring-2 ring-white/20 md:w-52"
             src={assetUrl("assets/Dong.jpg")}
             alt="Witsawa Daochuai"
           />
