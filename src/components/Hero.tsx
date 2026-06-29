@@ -42,6 +42,19 @@ export function Hero({ content }: HeroProps) {
           src={assetUrl("assets/portfolio/cover.png")}
           alt="Portfolio visual for e-wallet work"
         />
+        <div className="absolute bottom-6 left-6 right-6 flex items-center gap-4 rounded-2xl border border-white/70 bg-white/90 p-4 shadow-dashboard backdrop-blur-xl dark:border-slate-700/70 dark:bg-slate-950/85">
+          <img
+            className="h-20 w-20 shrink-0 rounded-2xl object-cover shadow-card"
+            src={assetUrl("assets/Dong.jpg")}
+            alt="Witsawa Daochuai"
+          />
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-blue">Witsawa Daochuai</p>
+            <p className="mt-1 text-sm font-semibold text-muted dark:text-slate-400">
+              Full-Stack Software Engineer
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
