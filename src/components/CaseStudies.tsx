@@ -14,9 +14,9 @@ export function CaseStudies({ content }: CaseStudiesProps) {
     <section id="work" className="section-shell">
       <SectionHeading eyebrow={content.sections.workEyebrow} title={content.sections.workTitle} />
 
-      <article className="mt-6 grid gap-7 rounded-2xl border border-white bg-white p-5 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="overflow-hidden rounded-xl bg-soft dark:bg-slate-800">
-          <img className="h-full min-h-72 w-full object-cover" src={assetUrl(featuredCase.image)} alt="" />
+      <article className="mt-6 grid gap-7 rounded-2xl border border-white bg-white p-5 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="overflow-hidden rounded-xl">
+          <img className="h-auto w-full object-contain" src={assetUrl(featuredCase.image)} alt="" />
         </div>
         <div className="self-center">
           <p className="text-xs font-black uppercase tracking-normal text-blue">{featuredCase.label}</p>
@@ -43,8 +43,8 @@ export function CaseStudies({ content }: CaseStudiesProps) {
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         {caseStudies.map((item) => (
           <article key={item.title} className="rounded-2xl border border-white bg-white p-5 shadow-dashboard dark:border-slate-700 dark:bg-slate-900">
-            <div className="overflow-hidden rounded-xl bg-soft dark:bg-slate-800">
-              <img className="aspect-[16/10] w-full object-cover" src={assetUrl(item.image)} alt="" />
+            <div className="overflow-hidden rounded-xl">
+              <img className="h-auto w-full object-contain" src={assetUrl(item.image)} alt="" />
             </div>
             <p className="mt-5 text-xs font-black uppercase tracking-normal text-blue">{item.label}</p>
             <h3 className="mt-2 text-2xl font-black leading-tight text-ink dark:text-white">{item.title}</h3>

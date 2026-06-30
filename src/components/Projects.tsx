@@ -13,8 +13,10 @@ export function Projects({ content }: ProjectsProps) {
       <SectionHeading eyebrow={content.sections.projectsEyebrow} title={content.sections.projectsTitle} />
       <div className="mt-8 grid gap-4">
         {content.projects.map((project) => (
-          <article key={project.title} className="grid gap-5 rounded-2xl border border-white bg-white p-4 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 sm:grid-cols-[190px_1fr]">
-            <img className="aspect-video w-full rounded-xl object-cover sm:h-32" src={assetUrl(project.image)} alt="" />
+          <article key={project.title} className="grid gap-5 rounded-2xl border border-white bg-white p-4 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 md:grid-cols-[280px_1fr]">
+            <div className="overflow-hidden rounded-xl">
+              <img className="h-auto w-full object-contain" src={assetUrl(project.image)} alt="" />
+            </div>
             <div>
               <h3 className="text-2xl font-black leading-tight text-ink dark:text-white">{project.title}</h3>
               <p className="mt-2 text-muted dark:text-slate-400">{project.summary}</p>

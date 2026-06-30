@@ -1,4 +1,4 @@
-import { ArrowDown, FileDown } from "lucide-react";
+import { ArrowDown, FileDown, ShieldCheck, Sparkles, WalletCards } from "lucide-react";
 import type { PortfolioContent } from "../data/portfolio";
 import { assetUrl } from "../lib/assetUrl";
 
@@ -8,7 +8,7 @@ type HeroProps = {
 
 export function Hero({ content }: HeroProps) {
   return (
-    <section id="top" className="grid gap-6 pb-8 pt-2 xl:grid-cols-[1.05fr_0.95fr]">
+    <section id="top" className="grid gap-6 pb-8 pt-2 xl:grid-cols-[0.95fr_1.05fr]">
       <div className="rounded-2xl bg-dashboard-hero p-6 text-white shadow-dashboard md:p-8">
         <div className="mb-8 flex flex-col items-start gap-5 rounded-2xl border border-white/10 bg-white/8 p-4 md:flex-row">
           <img
@@ -45,12 +45,35 @@ export function Hero({ content }: HeroProps) {
         </div>
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl border border-white bg-white p-3 shadow-dashboard dark:border-slate-700 dark:bg-slate-900">
+      <div className="relative overflow-hidden rounded-2xl border border-white bg-white p-4 shadow-dashboard dark:border-slate-700 dark:bg-slate-900">
         <img
-          className="aspect-[4/3] h-full w-full rounded-xl object-cover"
+          className="h-auto w-full rounded-xl object-contain"
           src={assetUrl("assets/portfolio/cover.png")}
           alt="Portfolio visual for e-wallet work"
         />
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
+            <WalletCards className="text-blue" size={22} aria-hidden="true" />
+            <p className="mt-3 text-sm font-black text-slate-900 dark:text-white">FinTech Platform</p>
+            <p className="mt-1 text-xs leading-5 text-muted dark:text-slate-400">
+              Wallet, partner API, transaction, settlement, KYC back office
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
+            <ShieldCheck className="text-green" size={22} aria-hidden="true" />
+            <p className="mt-3 text-sm font-black text-slate-900 dark:text-white">Security Work</p>
+            <p className="mt-1 text-xs leading-5 text-muted dark:text-slate-400">
+              Keycloak PKCE, brute-force protection, OWASP pentest fixes
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
+            <Sparkles className="text-coral" size={22} aria-hidden="true" />
+            <p className="mt-3 text-sm font-black text-slate-900 dark:text-white">AI Integration</p>
+            <p className="mt-1 text-xs leading-5 text-muted dark:text-slate-400">
+              Agent workflows, channel webhooks, RAG and local LLM exploration
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
