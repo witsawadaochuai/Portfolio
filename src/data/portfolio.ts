@@ -244,6 +244,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         summary:
           "Explored local LLM workflows with Ollama and multi-agent orchestration, comparing privacy, latency, and cloud-cost trade-offs.",
       },
+      {
+        title: "OpenClaw Agent Framework",
+        image: "assets/portfolio/openbridge_overview.png",
+        summary:
+          "Worked with OpenClaw as the agent framework behind OpenBridge / Pepper AI. Helped shape agent configuration, workflow behavior, tool invocation patterns, provisioning, and regression testing for channel-connected AI agents.",
+      },
+      {
+        title: "LINE ChatBot / Pepper AI Integration",
+        image: "assets/portfolio/hero.png",
+        summary:
+          "Built and integrated a LINE-connected AI chatbot flow for Pepper AI, covering webhook handling, agent orchestration, onboarding conversations, tool-calling behavior, and regression testing for real chat usage.",
+      },
     ],
     experience: [
       {
@@ -439,6 +451,18 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         image: "assets/portfolio/multi_agents.png",
         summary:
           "ทดลอง local LLM workflows ด้วย Ollama และ multi-agent orchestration เพื่อเทียบ privacy, latency และ cloud-cost trade-offs",
+      },
+      {
+        title: "OpenClaw Agent Framework",
+        image: "assets/portfolio/openbridge_overview.png",
+        summary:
+          "ทำงานกับ OpenClaw ในฐานะ agent framework ที่อยู่เบื้องหลัง OpenBridge / Pepper AI ช่วยปรับ agent configuration, workflow behavior, tool invocation pattern, provisioning และ regression testing สำหรับ AI agent ที่เชื่อมกับช่องทางจริง",
+      },
+      {
+        title: "LINE ChatBot / Pepper AI Integration",
+        image: "assets/portfolio/hero.png",
+        summary:
+          "พัฒนาและเชื่อม LINE ChatBot สำหรับ Pepper AI ครอบคลุม webhook handling, agent orchestration, onboarding conversation, tool-calling behavior และ regression testing สำหรับการใช้งานแชตจริง",
       },
     ],
     experience: [
