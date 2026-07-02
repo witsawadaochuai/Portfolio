@@ -33,7 +33,7 @@ type SidebarNavProps = {
   onToggle: () => void;
   onClose: () => void;
   onLanguageToggle: () => void;
-  onThemeToggle: () => void;
+  onThemeToggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export function Header({

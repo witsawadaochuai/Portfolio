@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
+import { flushSync } from "react-dom";
 import { ArrowUp, FileDown } from "lucide-react";
 import { CaseStudies } from "./components/CaseStudies";
 import { Contact } from "./components/Contact";
@@ -9,9 +10,10 @@ import { Metrics } from "./components/Metrics";
 import { Projects } from "./components/Projects";
 import { ScopeGrid } from "./components/ScopeGrid";
 import { Skills } from "./components/Skills";
+import { TechTicker } from "./components/TechTicker";
 import { portfolioContent, type Language, type ThemeMode } from "./data/portfolio";
 import { resumeUrl } from "./lib/assetUrl";
-import { useActiveSection, useScrollProgress, useScrollReveal } from "./lib/useScrollFx";
+import { useActiveSection, useCardSpotlight, useScrollProgress, useScrollReveal } from "./lib/useScrollFx";
 
 const sectionIds = ["top", "work", "scope", "projects", "experience", "contact"] as const;
 
@@ -29,7 +31,31 @@ export default function App() {
   const content = portfolioContent[language];
   const scrollProgress = useScrollProgress();
   const activeSection = useActiveSection(sectionIds);
-  useScrollReveal([language, theme]);
+  useScrollReveal([language]);
+  useCardSpotlight();
+
+  // Theme switch expands as a circle from the toggle button when the
+  // View Transitions API is available; otherwise it falls back to the
+  // regular CSS color transition.
+  const handleThemeToggle = (event?: MouseEvent<HTMLButtonElement>) => {
+    const apply = () => setTheme((current) => (current === "light" ? "dark" : "light"));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!document.startViewTransition || reduceMotion) {
+      apply();
+      return;
+    }
+
+    if (event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      document.documentElement.style.setProperty("--vt-x", `${rect.left + rect.width / 2}px`);
+      document.documentElement.style.setProperty("--vt-y", `${rect.top + rect.height / 2}px`);
+    }
+
+    document.startViewTransition(() => {
+      flushSync(apply);
+    });
+  };
 
   useEffect(() => {
     const desktopQuery = window.matchMedia("(min-width: 1024px)");
@@ -70,7 +96,7 @@ export default function App() {
         content={content}
         activeSection={activeSection}
         onLanguageToggle={() => setLanguage((current) => (current === "en" ? "th" : "en"))}
-        onThemeToggle={() => setTheme((current) => (current === "light" ? "dark" : "light"))}
+        onThemeToggle={handleThemeToggle}
       />
       <main className={`transition-[padding] duration-300 ${isNavOpen ? "lg:pl-72" : "lg:pl-0"}`}>
         <div className="mx-auto w-[min(1240px,calc(100%-2rem))] pt-5">
@@ -95,8 +121,9 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div key={`${language}-${theme}`} className="content-transition">
+          <div key={language} className="content-transition">
             <Hero content={content} />
+            <TechTicker items={content.techTicker} />
             <Metrics metrics={content.metrics} />
             <CaseStudies content={content} />
             <ScopeGrid content={content} />

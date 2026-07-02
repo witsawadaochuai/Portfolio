@@ -18,7 +18,7 @@ export function CaseStudies({ content }: CaseStudiesProps) {
 
       <article
         data-reveal
-        className="group mt-6 grid gap-7 rounded-2xl border border-white bg-white p-5 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 lg:grid-cols-[1.05fr_0.95fr]"
+        className="glow-border group mt-6 grid gap-7 rounded-2xl border border-white bg-white p-5 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 lg:grid-cols-[1.05fr_0.95fr]"
       >
         <div className="overflow-hidden rounded-xl">
           <img

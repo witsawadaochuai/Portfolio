@@ -1,6 +1,24 @@
+import { useEffect, useState } from "react";
 import { ArrowDown, FileDown, ShieldCheck, Sparkles, WalletCards } from "lucide-react";
 import type { PortfolioContent } from "../data/portfolio";
 import { assetUrl, resumeUrl } from "../lib/assetUrl";
+
+/** Cycles through role titles with a fade-slide swap every few seconds. */
+function RotatingRoles({ roles }: { roles: string[] }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (roles.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => setIndex((current) => (current + 1) % roles.length), 2600);
+    return () => window.clearInterval(id);
+  }, [roles]);
+
+  return (
+    <span key={roles[index]} className="role-swap inline-block">
+      {roles[index]}
+    </span>
+  );
+}
 
 type HeroProps = {
   content: PortfolioContent;
@@ -40,7 +58,9 @@ export function Hero({ content }: HeroProps) {
             />
             <div>
               <p className="text-2xl font-black leading-tight text-white md:text-3xl">Witsawa Daochuai</p>
-              <p className="mt-2 text-base font-semibold text-white/60 md:text-lg">Full-Stack Software Engineer</p>
+              <p className="mt-2 min-h-7 text-base font-semibold text-white/60 md:text-lg">
+                <RotatingRoles roles={content.hero.roles} />
+              </p>
             </div>
           </div>
           <p className="text-xs font-black uppercase tracking-normal text-blue-100">{content.hero.eyebrow}</p>

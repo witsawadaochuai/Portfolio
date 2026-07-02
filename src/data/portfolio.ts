@@ -47,7 +47,9 @@ export type PortfolioContent = {
     body: string;
     viewWork: string;
     resumePdf: string;
+    roles: string[];
   };
+  techTicker: string[];
   sections: {
     workEyebrow: string;
     workTitle: string;
@@ -73,6 +75,36 @@ export type PortfolioContent = {
   experience: Array<{ period: string; role: string; body: string; tags?: string[] }>;
   skillGroups: Array<{ title: string; body: string }>;
 };
+
+const sharedHeroRoles = [
+  "Full-Stack Software Engineer",
+  "FinTech Platform Developer",
+  "AI Agent Builder",
+  "Security-Minded Engineer",
+];
+
+const sharedTechTicker = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "NestJS",
+  "Node.js",
+  "PostgreSQL",
+  "Redis",
+  "Keycloak",
+  "OWASP",
+  "Docker",
+  "AWS",
+  "GCP",
+  "Tailwind CSS",
+  "LangChain",
+  "Ollama",
+  "MCP",
+  "Prisma",
+  "GitHub Actions",
+  "Python",
+  "FastAPI",
+];
 
 const sharedContactLinks = [
   { label: "Email", value: "witsawa.daochui@gmail.com", href: "mailto:witsawa.daochui@gmail.com" },
@@ -119,7 +151,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "I am Dong, a Computer Engineering and AI graduate. I have worked on a production Tourist E-Wallet platform (back-office, partner/wallet/transaction APIs, KYC back-office workflows, Keycloak security) and on AI agent platforms that connect LLMs to real channels and workflows.",
       viewWork: "View Work",
       resumePdf: "Resume PDF",
+      roles: sharedHeroRoles,
     },
+    techTicker: sharedTechTicker,
     sections: {
       workEyebrow: "Featured Work",
       workTitle: "Portfolio Case Studies",
@@ -338,7 +372,9 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         "ผมชื่อโด่ง จบ Computer Engineering & AI เคยทำระบบ Tourist E-Wallet บน production (back-office, partner/wallet/transaction API, KYC back-office workflow, Keycloak security) และทำ AI agent platform ที่เชื่อม LLM เข้ากับช่องทางและ workflow จริง",
       viewWork: "ดูผลงาน",
       resumePdf: "เรซูเม่ PDF",
+      roles: sharedHeroRoles,
     },
+    techTicker: sharedTechTicker,
     sections: {
       workEyebrow: "ผลงานเด่น",
       workTitle: "Portfolio Case Studies",

@@ -56,6 +56,27 @@ export function useScrollProgress() {
   return progress;
 }
 
+/**
+ * Tracks the pointer over `.card-hover` elements and stores its position in
+ * `--mx` / `--my` CSS variables, powering the spotlight glow that follows
+ * the cursor across cards.
+ */
+export function useCardSpotlight() {
+  useEffect(() => {
+    const handler = (event: PointerEvent) => {
+      const target = event.target as HTMLElement | null;
+      const card = target?.closest?.<HTMLElement>(".card-hover");
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+      card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+    };
+
+    window.addEventListener("pointermove", handler, { passive: true });
+    return () => window.removeEventListener("pointermove", handler);
+  }, []);
+}
+
 /** Id of the section currently in view, from a fixed list of section ids. */
 export function useActiveSection(ids: readonly string[]) {
   const [active, setActive] = useState(ids[0] ?? "");
