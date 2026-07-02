@@ -10,12 +10,23 @@ type ProjectsProps = {
 export function Projects({ content }: ProjectsProps) {
   return (
     <section id="projects" className="section-shell">
-      <SectionHeading eyebrow={content.sections.projectsEyebrow} title={content.sections.projectsTitle} />
+      <div data-reveal>
+        <SectionHeading eyebrow={content.sections.projectsEyebrow} title={content.sections.projectsTitle} />
+      </div>
       <div className="mt-8 grid gap-4">
-        {content.projects.map((project) => (
-          <article key={project.title} className="grid gap-5 rounded-2xl border border-white bg-white p-4 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 md:grid-cols-[280px_1fr]">
+        {content.projects.map((project, index) => (
+          <article
+            key={project.title}
+            data-reveal
+            style={{ "--reveal-delay": `${(index % 3) * 80}ms` } as React.CSSProperties}
+            className="card-hover group grid gap-5 rounded-2xl border border-white bg-white p-4 shadow-dashboard dark:border-slate-700 dark:bg-slate-900 md:grid-cols-[280px_1fr]"
+          >
             <div className="overflow-hidden rounded-xl">
-              <img className="h-auto w-full object-contain" src={assetUrl(project.image)} alt="" />
+              <img
+                className="h-auto w-full object-contain transition-transform duration-700 group-hover:scale-[1.05]"
+                src={assetUrl(project.image)}
+                alt=""
+              />
             </div>
             <div>
               <h3 className="text-2xl font-black leading-tight text-ink dark:text-white">{project.title}</h3>
@@ -25,7 +36,7 @@ export function Projects({ content }: ProjectsProps) {
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-3 inline-flex items-center gap-2 font-black text-blue"
+                  className="mt-3 inline-flex items-center gap-2 font-black text-blue transition hover:gap-3"
                 >
                   GitHub <ExternalLink size={16} aria-hidden="true" />
                 </a>

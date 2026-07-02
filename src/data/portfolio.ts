@@ -70,7 +70,7 @@ export type PortfolioContent = {
   caseStudies: CaseStudy[];
   scopeItems: ScopeItem[];
   projects: Array<{ title: string; image: string; summary: string; href?: string }>;
-  experience: Array<{ period: string; role: string; body: string }>;
+  experience: Array<{ period: string; role: string; body: string; tags?: string[] }>;
   skillGroups: Array<{ title: string; body: string }>;
 };
 
@@ -256,25 +256,35 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         summary:
           "Built and integrated a LINE-connected AI chatbot flow for Pepper AI, covering webhook handling, agent orchestration, onboarding conversations, tool-calling behavior, and regression testing for real chat usage.",
       },
+      {
+        title: "Personal Portfolio Website",
+        image: "assets/portfolio/cover.png",
+        summary:
+          "This site — a data-driven portfolio built with React, Vite, TypeScript, and Tailwind CSS. Bilingual Thai / English content served from a typed data structure, with dark mode and scroll-driven motion.",
+        href: "https://github.com/witsawadaochuai/Portfolio",
+      },
     ],
     experience: [
       {
-        period: "07/2025 - Present",
-        role: "Software Engineer | Enabridge Co., Ltd.",
+        period: "07/2025 - 06/2026",
+        role: "AI Software Engineer | Enabridge Co., Ltd.",
         body:
-          "Full-stack work on Tourist E-Wallet (with Lightnet): back-office UI, partner / wallet / transaction APIs, KYC back-office workflows, Keycloak (PKCE) security and brute-force protection, and OWASP pentest fixes. Also helped build the OpenBridge / Pepper AI agent platform and conducted blockchain-compliance research (LightBit).",
+          "Full-stack work on the E-Wallet platform (with Lightnet): led the back-office frontend as a core contributor, built partner-management APIs (top-up / withdraw / register) with database transactions and balance reconciliation, wallet & transaction services with multi-tenant data isolation, KYC back-office workflows, Keycloak (PKCE) security with brute-force protection, and OWASP pentest fixes. On the OpenBridge AI platform, built Pepper agent workflows (store onboarding / interview, objection handling), LINE / Facebook / Discord webhooks, Postiz publishing, and hybrid cloud/local LLM with Ollama — plus Redis race-condition fixes, E2E / regression tests, and GCP migration support. Also integrated AWS Rekognition for face verification and did blockchain-compliance research (LightBit).",
+        tags: ["Next.js", "NestJS", "PostgreSQL", "Keycloak", "OWASP", "AI Agents", "AWS Rekognition", "GCP"],
       },
       {
         period: "07/2024 - 02/2025",
-        role: "Trainee AI & Data Engineer | Smarterware Co., Ltd.",
+        role: "AI & Data Engineer Intern | Smarterware Co., Ltd.",
         body:
-          "Built a legal chatbot prototype with Streamlit, AWS Bedrock, and LangChain (RAG), plus a Thai document-processing pipeline (PyThaiNLP) with MongoDB / PostgreSQL and semantic search.",
+          "Built a legal chatbot with Streamlit, AWS Bedrock, and LangChain (RAG + vector embeddings), plus a Thai document-processing pipeline (PyThaiNLP, Transformers) with similarity / semantic search. Managed and optimized MongoDB / PostgreSQL and built a responsive web app.",
+        tags: ["AWS Bedrock", "LangChain", "RAG", "PyThaiNLP", "MongoDB", "PostgreSQL"],
       },
       {
-        period: "12/2022 - 05/2023",
-        role: "Trainee Project Engineer | SKY ICT PCL.",
+        period: "12/2022 - 03/2023",
+        role: "Project Engineer Intern | SKY ICT PCL.",
         body:
-          "Tested coin & ID-card scanning systems, verified CCTV face and license-plate detection, and installed CCTV control software.",
+          "Tested coin-operated payment and ID-card scanning modules (functional testing, issue reporting, verification), supported CCTV facial-recognition and license-plate detection systems, and installed CCTV control software for client environments.",
+        tags: ["Hardware Testing", "CCTV", "Face Recognition"],
       },
     ],
     skillGroups: [
@@ -464,25 +474,35 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
         summary:
           "พัฒนาและเชื่อม LINE ChatBot สำหรับ Pepper AI ครอบคลุม webhook handling, agent orchestration, onboarding conversation, tool-calling behavior และ regression testing สำหรับการใช้งานแชตจริง",
       },
+      {
+        title: "Personal Portfolio Website",
+        image: "assets/portfolio/cover.png",
+        summary:
+          "เว็บนี้เอง — data-driven portfolio สร้างด้วย React, Vite, TypeScript และ Tailwind CSS รองรับสองภาษา ไทย / อังกฤษ จาก typed data structure พร้อม dark mode และ scroll animation",
+        href: "https://github.com/witsawadaochuai/Portfolio",
+      },
     ],
     experience: [
       {
-        period: "07/2025 - Present",
-        role: "Software Engineer | Enabridge Co., Ltd.",
+        period: "07/2025 - 06/2026",
+        role: "AI Software Engineer | Enabridge Co., Ltd.",
         body:
-          "ทำงาน full-stack บน Tourist E-Wallet (ร่วมกับ Lightnet): back-office UI, partner / wallet / transaction API, KYC back-office workflow, Keycloak (PKCE) security + brute-force protection และแก้ pentest findings ตาม OWASP · นอกจากนี้ร่วมพัฒนา OpenBridge / Pepper AI agent platform และทำ blockchain-compliance research (LightBit)",
+          "ทำงาน full-stack บน E-Wallet platform (ร่วมกับ Lightnet): เป็น core contributor ฝั่ง back-office frontend, ทำ partner-management API (top-up / withdraw / register) พร้อม database transaction และ balance reconciliation, wallet & transaction services แบบ multi-tenant data isolation, KYC back-office workflow, Keycloak (PKCE) security + brute-force protection และแก้ pentest findings ตาม OWASP · ฝั่ง OpenBridge AI platform ทำ Pepper agent workflow (store onboarding / interview, objection handling), เชื่อม LINE / Facebook / Discord webhook, Postiz publishing และ hybrid cloud/local LLM ด้วย Ollama — รวมถึงแก้ Redis race condition, เพิ่ม E2E / regression tests และ support GCP migration · เชื่อม AWS Rekognition สำหรับ face verification และทำ blockchain-compliance research (LightBit)",
+        tags: ["Next.js", "NestJS", "PostgreSQL", "Keycloak", "OWASP", "AI Agents", "AWS Rekognition", "GCP"],
       },
       {
         period: "07/2024 - 02/2025",
-        role: "Trainee AI & Data Engineer | Smarterware Co., Ltd.",
+        role: "AI & Data Engineer Intern | Smarterware Co., Ltd.",
         body:
-          "ทำ legal chatbot prototype ด้วย Streamlit, AWS Bedrock และ LangChain (RAG) พร้อม Thai document-processing pipeline (PyThaiNLP) บน MongoDB / PostgreSQL และ semantic search",
+          "ทำ legal chatbot ด้วย Streamlit, AWS Bedrock และ LangChain (RAG + vector embeddings) พร้อม Thai document-processing pipeline (PyThaiNLP, Transformers) แบบ similarity / semantic search รวมถึงดูแลและ optimize MongoDB / PostgreSQL และทำ responsive web app",
+        tags: ["AWS Bedrock", "LangChain", "RAG", "PyThaiNLP", "MongoDB", "PostgreSQL"],
       },
       {
-        period: "12/2022 - 05/2023",
-        role: "Trainee Project Engineer | SKY ICT PCL.",
+        period: "12/2022 - 03/2023",
+        role: "Project Engineer Intern | SKY ICT PCL.",
         body:
-          "ทดสอบระบบสแกนเหรียญ / บัตรประชาชน, ตรวจสอบ CCTV face และ license-plate detection และติดตั้ง CCTV control software",
+          "ทดสอบระบบชำระเงินด้วยเหรียญและโมดูลสแกนบัตรประชาชน (functional testing, issue reporting, verification), ตรวจสอบ CCTV facial-recognition และ license-plate detection พร้อมติดตั้ง CCTV control software ให้ลูกค้า",
+        tags: ["Hardware Testing", "CCTV", "Face Recognition"],
       },
     ],
     skillGroups: [

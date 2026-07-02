@@ -78,6 +78,115 @@ section[id] {
   animation: fade-slide-up 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Scroll-reveal: elements start hidden and slide up once in view. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Card hover lift shared by dashboard cards. */
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+}
+
+[data-reveal].is-visible.card-hover:hover {
+  transform: translateY(-4px);
+}
+
+/* Metric cards get a gradient accent line that widens on hover. */
+.metric-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  height: 4px;
+  width: 36%;
+  border-radius: 0 0 999px 0;
+  background: linear-gradient(90deg, #2563eb, #38bdf8, #10b981);
+  transition: width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.metric-card:hover::before {
+  width: 100%;
+}
+
+/* Hero: slow-drifting aurora glow behind the dark panel. */
+.hero-aurora::before,
+.hero-aurora::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  height: 420px;
+  width: 420px;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.hero-aurora::before {
+  top: -160px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.85), transparent 65%);
+  animation: aurora-drift 16s ease-in-out infinite;
+}
+
+.hero-aurora::after {
+  bottom: -180px;
+  left: -140px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.55), transparent 65%);
+  animation: aurora-drift 19s ease-in-out infinite reverse;
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-70px, 50px) scale(1.15);
+  }
+}
+
+/* Hero title: subtle shimmering gradient text. */
+.hero-title {
+  background: linear-gradient(100deg, #ffffff 25%, #93c5fd 45%, #6ee7b7 55%, #ffffff 75%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: title-shimmer 7s linear infinite;
+}
+
+@keyframes title-shimmer {
+  to {
+    background-position: -220% center;
+  }
+}
+
+.hero-photo {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 500ms ease;
+}
+
+.hero-photo:hover {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.35);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -85,9 +194,22 @@ section[id] {
 
   *,
   .content-transition,
-  .section-shell {
+  .section-shell,
+  .hero-aurora::before,
+  .hero-aurora::after,
+  .hero-title {
     animation: none !important;
     transition: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-title {
+    background: none;
+    color: #ffffff;
   }
 }
 

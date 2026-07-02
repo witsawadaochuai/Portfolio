@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FileDown } from "lucide-react";
+import { ArrowUp, FileDown } from "lucide-react";
 import { CaseStudies } from "./components/CaseStudies";
 import { Contact } from "./components/Contact";
 import { Experience } from "./components/Experience";
@@ -10,7 +10,10 @@ import { Projects } from "./components/Projects";
 import { ScopeGrid } from "./components/ScopeGrid";
 import { Skills } from "./components/Skills";
 import { portfolioContent, type Language, type ThemeMode } from "./data/portfolio";
-import { assetUrl } from "./lib/assetUrl";
+import { resumeUrl } from "./lib/assetUrl";
+import { useActiveSection, useScrollProgress, useScrollReveal } from "./lib/useScrollFx";
+
+const sectionIds = ["top", "work", "scope", "projects", "experience", "contact"] as const;
 
 export default function App() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -24,6 +27,9 @@ export default function App() {
   });
 
   const content = portfolioContent[language];
+  const scrollProgress = useScrollProgress();
+  const activeSection = useActiveSection(sectionIds);
+  useScrollReveal([language, theme]);
 
   useEffect(() => {
     const desktopQuery = window.matchMedia("(min-width: 1024px)");
@@ -50,6 +56,11 @@ export default function App() {
 
   return (
     <>
+      <div
+        className="fixed inset-x-0 top-0 z-[90] h-1 origin-left bg-gradient-to-r from-blue-600 via-sky-400 to-emerald-400"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+        aria-hidden="true"
+      />
       <Header
         isOpen={isNavOpen}
         onToggle={() => setIsNavOpen((current) => !current)}
@@ -57,6 +68,7 @@ export default function App() {
         language={language}
         theme={theme}
         content={content}
+        activeSection={activeSection}
         onLanguageToggle={() => setLanguage((current) => (current === "en" ? "th" : "en"))}
         onThemeToggle={() => setTheme((current) => (current === "light" ? "dark" : "light"))}
       />
@@ -72,8 +84,8 @@ export default function App() {
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <a
-                  className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-slate-900 px-4 text-sm font-black text-white transition hover:bg-blue-600"
-                  href={assetUrl("assets/Resume-Witsawa-Daochuai.pdf")}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-slate-900 px-4 text-sm font-black text-white transition hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500"
+                  href={resumeUrl()}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -95,6 +107,16 @@ export default function App() {
           </div>
         </div>
       </main>
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed bottom-6 right-6 z-[70] inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/70 bg-white text-slate-800 shadow-dashboard transition hover:-translate-y-1 hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${
+          scrollProgress > 0.12 ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
+        }`}
+        aria-label="Back to top"
+      >
+        <ArrowUp size={20} aria-hidden="true" />
+      </button>
     </>
   );
 }

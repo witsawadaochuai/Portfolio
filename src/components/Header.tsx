@@ -13,15 +13,15 @@ import {
   X,
 } from "lucide-react";
 import type { Language, PortfolioContent, ThemeMode } from "../data/portfolio";
-import { assetUrl } from "../lib/assetUrl";
+import { resumeUrl } from "../lib/assetUrl";
 
 const navItems = [
-  { key: "dashboard", href: "#top", icon: Home },
-  { key: "work", href: "#work", icon: BriefcaseBusiness },
-  { key: "scope", href: "#scope", icon: Layers3 },
-  { key: "projects", href: "#projects", icon: FolderKanban },
-  { key: "experience", href: "#experience", icon: Timer },
-  { key: "contact", href: "#contact", icon: Mail },
+  { key: "dashboard", href: "#top", section: "top", icon: Home },
+  { key: "work", href: "#work", section: "work", icon: BriefcaseBusiness },
+  { key: "scope", href: "#scope", section: "scope", icon: Layers3 },
+  { key: "projects", href: "#projects", section: "projects", icon: FolderKanban },
+  { key: "experience", href: "#experience", section: "experience", icon: Timer },
+  { key: "contact", href: "#contact", section: "contact", icon: Mail },
 ] as const;
 
 type SidebarNavProps = {
@@ -29,6 +29,7 @@ type SidebarNavProps = {
   language: Language;
   theme: ThemeMode;
   content: PortfolioContent;
+  activeSection: string;
   onToggle: () => void;
   onClose: () => void;
   onLanguageToggle: () => void;
@@ -40,6 +41,7 @@ export function Header({
   language,
   theme,
   content,
+  activeSection,
   onToggle,
   onClose,
   onLanguageToggle,
@@ -115,17 +117,19 @@ export function Header({
           </div>
 
           <nav className="mt-7 grid gap-1.5 text-sm font-bold text-white/70" aria-label="Main navigation">
-            {navItems.map((item, index) => {
+            {navItems.map((item) => {
               const Icon = item.icon;
               const label = content.nav[item.key];
+              const isActive = item.section === activeSection;
 
               return (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={closeOnSmallScreen}
+                  aria-current={isActive ? "true" : undefined}
                   className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
-                    index === 0 ? "bg-white text-slate-900 shadow-sm" : "hover:bg-white hover:text-slate-900"
+                    isActive ? "bg-white text-slate-900 shadow-sm" : "hover:bg-white/15 hover:text-white"
                   }`}
                 >
                   <Icon size={18} aria-hidden="true" />
@@ -136,7 +140,7 @@ export function Header({
           </nav>
 
           <a
-            href={assetUrl("assets/Resume-Witsawa-Daochuai.pdf")}
+            href={resumeUrl()}
             target="_blank"
             rel="noreferrer"
             className="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 font-black text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-50"
